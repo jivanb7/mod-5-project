@@ -1,58 +1,54 @@
-// frontend/src/store/session.js
 
 import { csrfFetch } from './csrf';
 
-// Action Types
-const SET_SESSION_USER = 'session/SET_SESSION_USER';
-const REMOVE_SESSION_USER = 'session/REMOVE_SESSION_USER';
+const SET_USER = "session/setUser";
+const REMOVE_USER = "session/removeUser";
 
-// Initial State
-const initialState = {
-  user: null,
+const setUser = (user) => {
+  return {
+    type: SET_USER,
+    payload: user
+  };
 };
 
-// Action Creators
-const setSessionUser = (user) => ({
-  type: SET_SESSION_USER,
-  user,
-});
+const removeUser = () => {
+  return {
+    type: REMOVE_USER
+  };
+};
 
-const removeSessionUser = () => ({
-  type: REMOVE_SESSION_USER,
-});
-
-// Thunk Action for Logging In
-export const login = (credential, password) => async (dispatch) => {
-  const response = await csrfFetch('/api/session', {
-    method: 'POST',
-    body: JSON.stringify({ credential, password }),
+export const login = (user) => async (dispatch) => {
+  const { credential, password } = user;
+  const response = await csrfFetch("/api/session", {
+    method: "POST",
+    body: JSON.stringify({
+      credential,
+      password
+    })
   });
-
-  if (response.ok) {
-    const user = await response.json();
-    dispatch(setSessionUser(user));
-  } else {
-    console.error("Login failed");
-  }
+  const data = await response.json();
+  dispatch(setUser(data.user));
+  return response;
 };
 
-// Reducer
+const initialState = { user: null };
+
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SET_SESSION_USER:
-      return {
-        ...state,
-        user: action.user,
-      };
-    case REMOVE_SESSION_USER:
-      return {
-        ...state,
-        user: null,
-      };
+    case SET_USER:
+      return { ...state, user: action.payload };
+    case REMOVE_USER:
+      return { ...state, user: null };
     default:
       return state;
   }
 };
 
-export default sessionReducer;
+export const restoreUser = () => async (dispatch) => {
+  const response = await csrfFetch("/api/session");
+  const data = await response.json();
+  dispatch(setUser(data.user));
+  return response;
+};
 
+export default sessionReducer;
