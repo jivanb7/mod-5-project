@@ -1,40 +1,37 @@
-
-/* frontend/src/components/Navigation/Navigation.css */
-
 ul {
-    list-style-type: none; /* Remove bullet points */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
-    display: flex; /* Align items in a row */
-    background-color: #f8f9fa; /* Light background color */
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+    background-color: #f8f9fa; 
   }
   
   li {
-    margin-right: 20px; /* Space between items */
+    margin-right: 20px; 
   }
   
   a {
-    text-decoration: none; /* Remove underline from links */
-    color: #000; /* Black text color */
-    padding: 10px; /* Padding around links */
+    text-decoration: none; 
+    color: #000; 
+    padding: 10px; 
   }
   
   a:hover {
-    color: #007BFF; /* Change color on hover */
+    color: #007BFF; 
   }
   
   .profile-dropdown {
-    position: absolute; /* Position dropdown */
-    background-color: white; /* White background */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 4px; /* Rounded corners */
-    padding: 10px; /* Padding inside dropdown */
-    list-style: none; /* Remove bullet points */
-    margin: 0; /* Remove margin */
-    z-index: 1000; /* Ensure it appears above other elements */
+    position: absolute; 
+    background-color: white; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+    padding: 10px; 
+    list-style: none; 
+    margin: 0; 
+    z-index: 1000; 
   }
   
   .hidden {
-    display: none; /* Hide the dropdown */
+    display: none; 
   }
   
