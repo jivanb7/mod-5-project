@@ -1,9 +1,9 @@
-// frontend/src/components/Navigation/Navigation.jsx
 
 import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import HomeButton from './HomeButton';
+import UserMenu from './UserMenu';
 
 function Navigation({ isLoaded }) {
   const sessionUser = useSelector(state => state.session.user);
@@ -14,7 +14,11 @@ function Navigation({ isLoaded }) {
         <li className="home-button">
           <HomeButton />
         </li>
-        {isLoaded && (
+        {isLoaded && sessionUser ? (
+          <li className="user-menu">
+            <UserMenu /> 
+          </li>
+        ) : (
           <li className="profile-button">
             <ProfileButton user={sessionUser} />
           </li>
