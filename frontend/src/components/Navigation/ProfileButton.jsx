@@ -65,16 +65,16 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-            <li>
+          <li>
               <OpenModalButton
-                buttonText="Log In"
-                modalComponent={<LoginFormModal />}
+                buttonText="Sign Up"
+                modalComponent={<SignupFormModal />}
               />
             </li>
             <li>
               <OpenModalButton
-                buttonText="Sign Up"
-                modalComponent={<SignupFormModal />}
+                buttonText="Log In"
+                modalComponent={<LoginFormModal />}
               />
             </li>
           </>
