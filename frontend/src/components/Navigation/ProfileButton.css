@@ -1,0 +1,14 @@
+.icon-buttons button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .hamburger-icon, .user-icon {
+    margin-right: 8px; 
+  }
+  
+  .user-icon {
+    margin-right: 0;
+  }
+  
