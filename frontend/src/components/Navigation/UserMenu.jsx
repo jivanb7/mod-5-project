@@ -2,10 +2,13 @@ import { useState, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import * as sessionActions from '../../store/session';
 import { useNavigate } from 'react-router-dom';
+import { FaUserCircle } from 'react-icons/fa';
+import { RxHamburgerMenu } from 'react-icons/rx';
+import './UserMenu.css';
 
 function UserMenu() {
   const dispatch = useDispatch();
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
   const sessionUser = useSelector((state) => state.session.user);
   const [isOpen, setIsOpen] = useState(false);
   const ulRef = useRef();
@@ -38,11 +41,17 @@ function UserMenu() {
 
   return (
     <div className="user-menu">
-      <button onClick={toggleMenu}>
-        {sessionUser ? `Hello, ${sessionUser.firstName}` : 'User Menu'}
+      <button onClick={toggleMenu} className="icon-button">
+        <span className="hamburger-icon">
+          <RxHamburgerMenu />
+        </span>
+        <span className="user-icon">
+          <FaUserCircle />
+        </span>
       </button>
-      {isOpen && (
+      {isOpen && sessionUser && (
         <ul className="profile-dropdown" ref={ulRef}>
+          <li>{`Hello, ${sessionUser.firstName}`}</li>
           <li>{sessionUser.email}</li>
           <li>
             <button onClick={handleLogout}>Log Out</button>
