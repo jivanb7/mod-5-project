@@ -32,6 +32,11 @@ function UserMenu() {
     return () => document.removeEventListener("click", closeMenu);
   }, [isOpen]);
 
+  const handleManageSpots = () => {
+    setIsOpen(false);
+    navigate('/spots/manage'); 
+  };
+
   const handleLogout = () => {
     dispatch(sessionActions.logout()).then(() => {
       setIsOpen(false);
@@ -53,6 +58,9 @@ function UserMenu() {
         <ul className="profile-dropdown" ref={ulRef}>
           <li>{`Hello, ${sessionUser.firstName}`}</li>
           <li>{sessionUser.email}</li>
+          <li>
+            <button onClick={handleManageSpots}>Manage Spots</button>
+          </li>
           <li>
             <button onClick={handleLogout}>Log Out</button>
           </li>

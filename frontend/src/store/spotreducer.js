@@ -2,6 +2,9 @@
 import { csrfFetch } from "./csrf";
 
 export const FETCH_SPOTS = 'FETCH_SPOTS';
+export const FETCH_SPOT = 'FETCH_SPOT';
+export const FETCH_SPOT_SUCCESS = 'FETCH_SPOT_SUCCESS';
+export const FETCH_SPOT_FAILURE = 'FETCH_SPOT_FAILURE';
 export const CREATE_SPOT = 'CREATE_SPOT';
 export const CREATE_SPOT_SUCCESS = 'CREATE_SPOT_SUCCESS';
 export const CREATE_SPOT_FAILURE = 'CREATE_SPOT_FAILURE';
@@ -16,6 +19,43 @@ export const fetchSpots = () => async (dispatch) => {
         console.error("Error fetching spots:", error);
     }
 };
+
+export const getSpot = (spotId) => async (dispatch) => {
+    dispatch({ type: FETCH_SPOT });
+
+    try {
+        const response = await csrfFetch(`/api/spots/${spotId}`);
+        const data = await response.json();
+
+        dispatch({ type: FETCH_SPOT_SUCCESS, payload: data });
+    } catch (error) {
+        console.error("Error fetching spot:", error);
+        dispatch({ type: FETCH_SPOT_FAILURE, payload: error });
+    }
+};
+
+export const updateSpot = (spotId, spotData) => async (dispatch) => {
+    try {
+      const response = await csrfFetch(`/api/spots/${spotId}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(spotData),
+      });
+  
+      if (response.ok) {
+        const data = await response.json();
+        dispatch({ type: 'UPDATE_SPOT_SUCCESS', payload: data });
+        return { ok: true };
+      }
+    } catch (error) {
+      console.error("Error updating spot:", error);
+      return { ok: false };
+    }
+  };
+  
+
 
 export const createSpot = (spotData, navigate) => async (dispatch) => {
     dispatch({ type: CREATE_SPOT });
@@ -46,6 +86,7 @@ export const createSpot = (spotData, navigate) => async (dispatch) => {
 
 const initialState = {
     spots: [],
+    selectedSpot: null,
     loading: false,
     error: null,
 };
@@ -54,6 +95,12 @@ const spotReducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_SPOTS:
             return { ...state, spots: action.payload };
+        case FETCH_SPOT:
+            return { ...state, loading: true, error: null };
+        case FETCH_SPOT_SUCCESS:
+            return { ...state, loading: false, selectedSpot: action.payload };
+        case FETCH_SPOT_FAILURE:
+            return { ...state, loading: false, error: action.payload };
         case CREATE_SPOT:
             return { ...state, loading: true, error: null };
         case CREATE_SPOT_SUCCESS:
