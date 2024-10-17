@@ -1,0 +1,18 @@
+.spot-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  
+  .spot {
+    cursor: pointer;
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: center;
+  }
+  
+  .spot img {
+    width: 100%;
+    height: auto;
+  }
+  

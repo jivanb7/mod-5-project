@@ -5,7 +5,7 @@ const { SpotImage } = require("../models");
 const spotImageData = [
   {
     spotId: 1,
-    url: "https://www.example.com",
+    url: "https://img.freepik.com/free-vector/beautiful-home_24877-50819.jpg",
     preview: true,
   },
   {
@@ -18,7 +18,7 @@ const spotImageData = [
   },
   {
     spotId: 2,
-    url: "https://www.example-image-four.com",
+    url: "https://img.freepik.com/free-photo/luxury-cottage-old-suburb-illuminated-by-twilight-lighting-generated-by-artificial-intelligence_188544-150345.jpg",
     preview: true,
   },
   {
@@ -27,7 +27,7 @@ const spotImageData = [
   },
   {
     spotId: 3,
-    url: "https://www.example-spotimage-three.com",
+    url: "https://img.freepik.com/free-photo/luxurious-villa-with-modern-architectural-design_23-2151694123.jpg",
     preview: true,
   },
   {
@@ -36,7 +36,7 @@ const spotImageData = [
   },
   {
     spotId: 4,
-    url: "https://www.example-spotimage-four.com",
+    url: "https://img.freepik.com/premium-photo/exterior-view-luxury-bungalows-4k-wallpaper-hd-wallpaper_1262886-7872.jpg",
     preview: true,
   },
   {
@@ -45,7 +45,7 @@ const spotImageData = [
   },
   {
     spotId: 5,
-    url: "https://www.example-spotimage-five.com",
+    url: "https://img.freepik.com/free-photo/ai-generated-house-design_23-2150666425.jpg",
     preview: true,
   },
   {
@@ -58,7 +58,7 @@ const spotImageData = [
   },
   {
     spotId: 6,
-    url: "https://www.example-spotimage-six.com",
+    url: "https://img.freepik.com/premium-photo/horror-house-landscapes-stock-photos_862994-609422.jpg",
     preview: true,
   },
   {
@@ -75,7 +75,7 @@ const spotImageData = [
   },
   {
     spotId: 7,
-    url: "https://www.example-spotimage-seven.com",
+    url: "https://img.freepik.com/free-photo/large-house-with-red-roof-white-roof-with-blue-roof_1340-27855.jpg",
     preview: true,
   },
   {
@@ -84,12 +84,12 @@ const spotImageData = [
   },
   {
     spotId: 8,
-    url: "https://www.example-spotimage-eight.com",
+    url: "https://img.freepik.com/free-photo/beautiful-summer-day-modern-suburban-backyard-oasis-generated-by-artificial-intelligence_188544-150104.jpg",
     preview: true,
   },
   {
     spotId: 9,
-    url: "https://www.example-spotimage-nine.com",
+    url: "https://img.freepik.com/free-photo/beautiful-rainbow-nature_23-2151498219.jpg",
     preview: true,
   },
   {
@@ -102,7 +102,7 @@ const spotImageData = [
   },
   {
     spotId: 10,
-    url: "https://www.example-spotimage-ten.com",
+    url: "https://img.freepik.com/free-photo/large-house-with-lawn-large-lawn-with-flowers-it_1340-45729.jpg",
     preview: true,
   },
   {
@@ -111,7 +111,7 @@ const spotImageData = [
   },
   {
     spotId: 11,
-    url: "https://www.example-spotimage-eleven.com",
+    url: "https://img.freepik.com/free-photo/photorealistic-house-with-wooden-architecture-timber-structure_23-2151302722.jpg",
     preview: true,
   },
   {
@@ -120,7 +120,7 @@ const spotImageData = [
   },
   {
     spotId: 12,
-    url: "https://www.example-spotimage-twelve.com",
+    url: "https://img.freepik.com/free-photo/photorealistic-house-with-wooden-architecture-timber-structure_23-2151302655.jpg",
     preview: true,
   },
   {
@@ -137,7 +137,7 @@ const spotImageData = [
   },
   {
     spotId: 13,
-    url: "https://www.example-spotimage-thirteen.com",
+    url: "https://as1.ftcdn.net/v2/jpg/08/92/92/28/1000_F_892922865_64eD2s9sOO0dvbE6TwKgDXBuBoDpFLU8.jpg",
     preview: true,
   },
   {
@@ -150,7 +150,7 @@ const spotImageData = [
   },
   {
     spotId: 14,
-    url: "https://www.example-spotimage-fourteen.com",    
+    url: "https://img.freepik.com/free-photo/coastal-cliff-house-architecture-background_1409-5481.jpg",    
     preview: true,
   },
   {
@@ -159,7 +159,7 @@ const spotImageData = [
   },
   {
     spotId: 15,
-    url: "https://www.example-spotimage-fifteen.com",
+    url: "https://img.freepik.com/free-photo/photorealistic-wooden-house-with-timber-structure_23-2151302626.jpg",
     preview: true,
   },
   {
@@ -172,7 +172,7 @@ const spotImageData = [
   },
   {
     spotId: 16,
-    url: "https://www.example-spotimage-sixteen.com",
+    url: "https://img.freepik.com/free-photo/photorealistic-house-with-wooden-architecture-timber-structure_23-2151302653.jpg",
     preview: true,
   },
   {
@@ -181,7 +181,7 @@ const spotImageData = [
   },
   {
     spotId: 17,
-    url: "https://www.example-spotimage-seventeen.com",
+    url: "https://img.freepik.com/free-photo/facade-modern-house_1268-24725.jpg",
     preview: true,
   },
   {
@@ -194,7 +194,7 @@ const spotImageData = [
   },
   {
     spotId: 18,
-    url: "https://www.example-spotimage-eighteen.com",
+    url: "https://img.freepik.com/free-photo/night-architecture-outdoors-dusk-building-exterior-tree-grass-illuminated-generative-ai_188544-7729.jpg",
     preview: true,
   },
   {
@@ -215,7 +215,7 @@ const spotImageData = [
   },
   {
     spotId: 19,
-    url: "https://www.example-spotimage-nineteen.com",
+    url: "https://img.freepik.com/free-photo/ai-generated-house-design_23-2150666166.jpg",
     preview: true,
   },
   {
@@ -224,7 +224,7 @@ const spotImageData = [
   },
   {
     spotId: 20,
-    url: "https://www.example-spotimage-twenty.com",
+    url: "https://img.freepik.com/free-photo/fantasy-house-moon-illustration_23-2151627918.jpg",
     preview: true,
   },
   {

@@ -36,10 +36,6 @@ a {
   padding: 10px;
 }
 
-a:hover {
-  color: #007BFF;
-}
-
 .profile-dropdown {
   position: absolute;
   top: 100%;
@@ -52,6 +48,7 @@ a:hover {
   margin: 0;
   z-index: 1000;
   gap: 2px;
+  display: block;
 }
 
 .hidden {

@@ -1,0 +1,10 @@
+button.logo-button {
+    background: none; 
+    cursor: pointer; 
+    padding: 0;
+  }
+
+  .logo-image {
+    width: 100px;
+    height: auto;
+  }

@@ -3,10 +3,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
+import { RxHamburgerMenu } from "react-icons/rx";
 import * as sessionActions from '../../store/session';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
+import "./ProfileButton.css";
 
 function ProfileButton({ user }) {
   const dispatch = useDispatch();
@@ -41,9 +43,16 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={toggleMenu}>
-        <FaUserCircle />
-      </button>
+      <div className="icon-buttons">
+        <button onClick={toggleMenu}>
+          <span className="hamburger-icon">
+            <RxHamburgerMenu />
+          </span>
+          <span className="user-icon">
+            <FaUserCircle />
+          </span>
+        </button>
+      </div>
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
@@ -56,16 +65,16 @@ function ProfileButton({ user }) {
           </>
         ) : (
           <>
-            <li>
+          <li>
               <OpenModalButton
-                buttonText="Log In"
-                modalComponent={<LoginFormModal />}
+                buttonText="Sign Up"
+                modalComponent={<SignupFormModal />}
               />
             </li>
             <li>
               <OpenModalButton
-                buttonText="Sign Up"
-                modalComponent={<SignupFormModal />}
+                buttonText="Log In"
+                modalComponent={<LoginFormModal />}
               />
             </li>
           </>

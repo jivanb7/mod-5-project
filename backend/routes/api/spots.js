@@ -120,8 +120,10 @@ router.get("/", async (req, res, next) => {
     return next(errorObj);
   }
 
+  const totalSpots = await Spot.count();
+  if (!size) size = totalSpots;
   if (!page) page = 1;
-  if (!size) size = 20;
+  // if (!size) size = 40;
 
   queryObj.limit = size;
   queryObj.offset = size * (page - 1);
@@ -182,15 +184,31 @@ router.get("/:spotId", async (req, res, next) => {
 
 // create a new spot
 router.post("/", requireAuth, validateSpotDetails, async (req, res) => {
+  // const spotDetails = {
+  //   ownerId: req.user.id,
+  //   ...req.body,
+  // };
+  // let newSpot = await Spot.create(spotDetails);
+  // newSpot = newSpot.toJSON();
+  // formatTimestampsOfRecord(newSpot);
+  // res.status(201).json(newSpot);
+  const { previewImage, ...spotData } = req.body;
   const spotDetails = {
     ownerId: req.user.id,
-    ...req.body,
+    ...spotData, 
   };
 
   let newSpot = await Spot.create(spotDetails);
 
   newSpot = newSpot.toJSON();
 
+  if (previewImage) {
+    await SpotImage.create({
+      url: previewImage,
+      preview: true,
+      spotId: newSpot.id, 
+    });
+  }
   formatTimestampsOfRecord(newSpot);
 
   res.status(201).json(newSpot);

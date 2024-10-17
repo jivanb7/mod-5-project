@@ -122,6 +122,24 @@ const reviewsData = [
     spotId: 19,
     review: "Overhyped, I expected much more.",
     stars: 2
+  },
+  {
+    userId: 10,
+    spotId: 4,
+    review: "Worst experience ever, will not be coming back here.",
+    stars: 1
+  },
+  {
+    userId: 10,
+    spotId: 13,
+    review: "I enjoyed this experience a ton.",
+    stars: 4
+  },
+  {
+    userId: 10,
+    spotId: 18,
+    review: "It seemed alright, experienced better.",
+    stars: 3
   }
 ];
 

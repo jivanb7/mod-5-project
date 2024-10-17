@@ -16,29 +16,79 @@ function SignupFormModal() {
   const { closeModal } = useModal();
 
   const handleSubmit = (e) => {
+    // e.preventDefault();
+    // if (password === confirmPassword) {
+    //   setErrors({}); 
+
+    //   return dispatch(
+    //     sessionActions.signup({
+    //       email,
+    //       username,
+    //       firstName,
+    //       lastName,
+    //       password
+    //     })
+    //   )
+    //     .then(closeModal)
+    //     .catch(async (res) => {
+    //       const data = await res.json();
+          
+    //       if (data?.errors) {
+    //         setErrors(data.errors);
+    //       }
+    //     });
+    // } else {
+    //   // Handle password confirmation error
+    //   setErrors({
+    //     confirmPassword: "Confirm Password field must be the same as the Password field"
+    //   });
+    // }
     e.preventDefault();
-    if (password === confirmPassword) {
-      setErrors({});
-      return dispatch(
-        sessionActions.signup({
-          email,
-          username,
-          firstName,
-          lastName,
-          password
-        })
-      )
-        .then(closeModal)
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data?.errors) {
-            setErrors(data.errors);
-          }
-        });
-    }
-    return setErrors({
-      confirmPassword: "Confirm Password field must be the same as the Password field"
+  
+  const newErrors = {};
+
+  // Validate fields and collect errors
+  if (!email) newErrors.email = "Email is required";
+  if (!username) newErrors.username = "Username is required";
+  if (!firstName) newErrors.firstName = "First Name is required";
+  if (!lastName) newErrors.lastName = "Last Name is required";
+  if (!password) newErrors.password = "Password is required";
+  if (password !== confirmPassword) {
+    newErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
+  }
+
+  // If there are errors, set them and return
+  if (Object.keys(newErrors).length > 0) {
+    return setErrors(newErrors);
+  }
+
+  setErrors({}); 
+
+  return dispatch(
+    sessionActions.signup({
+      email,
+      username,
+      firstName,
+      lastName,
+      password
+    })
+  )
+    .then(closeModal)
+    .catch(async (res) => {
+      const data = await res.json();
+      if (data?.errors) {
+        setErrors(data.errors);
+      }
     });
+  };
+
+  const isFormValid = () => {
+    return (
+      email &&
+      username.length >= 4 &&
+      password.length >= 6 &&
+      password === confirmPassword
+    );
   };
 
   return (
@@ -54,7 +104,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="error">{errors.email}</p>} 
+        
         <label>
           Username
           <input
@@ -64,7 +115,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.username && <p>{errors.username}</p>}
+        {errors.username && <p className="error">{errors.username}</p>} 
+        
         <label>
           First Name
           <input
@@ -74,7 +126,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.firstName && <p>{errors.firstName}</p>}
+        {errors.firstName && <p className="error">{errors.firstName}</p>} 
+        
         <label>
           Last Name
           <input
@@ -84,7 +137,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.lastName && <p>{errors.lastName}</p>}
+        {errors.lastName && <p className="error">{errors.lastName}</p>} 
+        
         <label>
           Password
           <input
@@ -94,7 +148,8 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="error">{errors.password}</p>} 
+        
         <label>
           Confirm Password
           <input
@@ -104,10 +159,9 @@ function SignupFormModal() {
             required
           />
         </label>
-        {errors.confirmPassword && (
-          <p>{errors.confirmPassword}</p>
-        )}
-        <button type="submit">Sign Up</button>
+        {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>} 
+        
+        <button type="submit"  disabled={!isFormValid()}>Sign Up</button>
       </form>
     </>
   );

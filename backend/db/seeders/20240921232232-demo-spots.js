@@ -102,9 +102,8 @@ const spotsData = [
     lat: 77.2348978,
     lng: -162.2384798,
     name: "Multi-Family Home",
-    description:
-      "Awesome neighborhood, with multiple cool amentities and features!",
-    price: 85.5,
+    description: "Awesome neighborhood, with multiple cool amentities and features!",
+    price: 185,
   },
   {
     ownerId: 10,
