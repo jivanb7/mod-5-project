@@ -17,18 +17,22 @@ function SpotDetail() {
   }, [spotId]);
 
   if (!spot) return;
+  
+  const previewImage = spot.SpotImages?.find(image => image.preview)?.url;
 
   return (
     <div className="spot-detail">
       <h1>{spot.name}</h1>
-      <img src={spot.previewImage} alt={spot.name} />
+      <img src={previewImage} alt={spot.name} />
       <p>{spot.description}</p>
       <p>Hosted by: {spot.Owner.firstName} {spot.Owner.lastName}</p>
       <p>Location: {spot.city}, {spot.state}</p>
       <p>Price: ${spot.price} per night</p>
-      <p>{spot.avgRating ? `Rating: ${spot.avgRating}` : 'Rating: New'}</p>
+      <p>{spot.avgStarRating ? `Rating: ${spot.avgStarRating}` : 'Rating: New'}</p>
     </div>
   );
 }
+
+
 
 export default SpotDetail;

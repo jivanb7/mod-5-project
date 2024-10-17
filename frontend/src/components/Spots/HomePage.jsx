@@ -1,19 +1,18 @@
-import { useEffect, useState } from 'react';
-import Spot from "./Spot";
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchSpots } from '../../store/spotreducer';
+import Spot from './Spot';
 import "./HomePage.css";
 
 function HomePage() {
-  const [spots, setSpots] = useState([]);
-
+  // const [spots, setSpots] = useState([]);
+  const dispatch = useDispatch();
+  const spots = useSelector(state => state.spots.spots);
+  
   useEffect(() => {
-    const fetchSpots = async () => {
-      const response = await fetch('/api/spots');
-      const data = await response.json();
-      setSpots(data.Spots); // Access the Spots array here
-    };
+    dispatch(fetchSpots());
+  }, [dispatch]);
 
-    fetchSpots();
-  }, []);
 
   return (
     <div className="home-page">

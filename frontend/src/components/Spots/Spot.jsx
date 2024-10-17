@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 
 function Spot({ spot }) {
+
   return (
     <Link to={`/spots/${spot.id}`} className="spot-link">
       <div className="spot-card">

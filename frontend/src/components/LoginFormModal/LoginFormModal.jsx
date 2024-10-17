@@ -39,6 +39,12 @@ function LoginFormModal() {
     <>
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
+        {errors.credential && (
+          <p className='login-error'>{errors.credential === 'Invalid credentials'
+            ? 'The provided credentials were invalid' 
+            : errors.credential}
+          </p>
+        )}
         <label>
           Username or Email
           <input
@@ -57,12 +63,6 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.credential && (
-          <p>{errors.credential === 'Invalid credentials'
-            ? 'The provided credentials were invalid' 
-            : errors.credential}
-          </p>
-        )}
         <button
           type="submit"
           disabled={credential.length < 4 || password.length < 6}  

@@ -53,6 +53,10 @@ body {
     text-align: center;
   }
 
+  .login-error {
+    color: red;
+  }
+
   button[type="button"] {
     width: 89%;
     padding: 10px;
