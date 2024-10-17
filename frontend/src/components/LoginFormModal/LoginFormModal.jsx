@@ -32,6 +32,8 @@ function LoginFormModal() {
         console.log("INSPECT DATA : ", data);
         if (data && data.errors) {
           setErrors(data.errors);
+        } else {
+          setErrors({ credential: 'The provided credentials were invalid' })
         }
       });
   };
@@ -41,7 +43,7 @@ function LoginFormModal() {
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         {errors.credential && (
-          <p className='login-error'>{errors.credential === 'Invalid credentials'
+          <p className='login-error'>{errors.credential === 'Invalid credentials' || errors.message === 'Invalid credentials'
             ? 'The provided credentials were invalid' 
             : errors.credential}
           </p>
@@ -64,12 +66,6 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.credential && (
-          <p className='login-error'>{errors.credential === 'Invalid credentials'
-            ? 'The provided credentials were invalid' 
-            : errors.credential}
-          </p>
-        )}
         <button
           type="submit"
           disabled={credential.length < 4 || password.length < 6}  
