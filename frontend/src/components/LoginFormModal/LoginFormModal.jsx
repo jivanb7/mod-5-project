@@ -64,6 +64,12 @@ function LoginFormModal() {
             required
           />
         </label>
+        {errors.credential && (
+          <p className='login-error'>{errors.credential === 'Invalid credentials'
+            ? 'The provided credentials were invalid' 
+            : errors.credential}
+          </p>
+        )}
         <button
           type="submit"
           disabled={credential.length < 4 || password.length < 6}  
