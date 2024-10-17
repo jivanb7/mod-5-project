@@ -62,10 +62,7 @@ function CreateSpotForm() {
                 previewImage: e.target.previewImage.value,
                 images: [...Array(5)].map((_, i) => e.target[`imageUrl${i}`]?.value).filter(Boolean),
             };
-            const result = dispatch(createSpot(spotData));
-            if (result) {
-                navigate("/"); 
-            }
+            dispatch(createSpot(spotData, navigate));
         }
     };
     

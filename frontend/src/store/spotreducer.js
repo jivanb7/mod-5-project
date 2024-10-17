@@ -17,7 +17,7 @@ export const fetchSpots = () => async (dispatch) => {
     }
 };
 
-export const createSpot = (spotData) => async (dispatch) => {
+export const createSpot = (spotData, navigate) => async (dispatch) => {
     dispatch({ type: CREATE_SPOT });
 
     try {
@@ -33,6 +33,10 @@ export const createSpot = (spotData) => async (dispatch) => {
 
         dispatch({ type: CREATE_SPOT_SUCCESS, payload: data });
         dispatch(fetchSpots());
+        
+        if (navigate && data.id) {
+            navigate(`/spots/${data.id}`);
+        }
 
     } catch (error) {
         console.error("Error creating spot:", error);

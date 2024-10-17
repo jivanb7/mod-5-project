@@ -16,16 +16,17 @@ function SpotDetail() {
     fetchSpotDetail();
   }, [spotId]);
 
-  if (!spot) return;
+  if (!spot) return null;
   
   const previewImage = spot.SpotImages?.find(image => image.preview)?.url;
+  const ownerName = spot.Owner ? `${spot.Owner.firstName} ${spot.Owner.lastName}` : 'Unknown Host';
 
   return (
     <div className="spot-detail">
       <h1>{spot.name}</h1>
       <img src={previewImage} alt={spot.name} />
       <p>{spot.description}</p>
-      <p>Hosted by: {spot.Owner.firstName} {spot.Owner.lastName}</p>
+      <p>Hosted by: {ownerName}</p>
       <p>Location: {spot.city}, {spot.state}</p>
       <p>Price: ${spot.price} per night</p>
       <p>{spot.avgStarRating ? `Rating: ${spot.avgStarRating}` : 'Rating: New'}</p>
