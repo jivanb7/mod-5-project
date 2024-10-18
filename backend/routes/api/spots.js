@@ -260,6 +260,7 @@ router.put(
       name,
       description,
       price,
+      previewImage,
     } = req.body;
 
     const currentTimeStamp = new Date();
@@ -278,11 +279,25 @@ router.put(
     });
 
     await spotToEdit.save();
+
+    const spotImage = await SpotImage.findOne({ where: { spotId, preview: true } });
+    if (spotImage) {
+      spotImage.url = previewImage; 
+      await spotImage.save();
+    } else {
+      await SpotImage.create({ url: previewImage, preview: true, spotId }); 
+    }
+
     let updatedSpot = await spotToEdit.reload();
 
     updatedSpot = updatedSpot.toJSON();
 
     formatTimestampsOfRecord(updatedSpot);
+
+    const previewImageEntry = await SpotImage.findOne({ where: { spotId, preview: true } });
+    if (previewImageEntry) {
+      updatedSpot.previewImage = previewImageEntry.url;
+    }
 
     res.status(200).json(updatedSpot);
   }

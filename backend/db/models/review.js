@@ -33,6 +33,14 @@ module.exports = (sequelize, DataTypes) => {
           max: 5,
         },
       },
+      month: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      year: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
     },
     {
       sequelize,

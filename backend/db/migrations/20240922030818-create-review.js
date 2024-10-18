@@ -38,9 +38,19 @@ module.exports = {
       },
       options
     );
+    await queryInterface.addColumn("Reviews", "month", {
+      type: Sequelize.STRING,
+      allowNull: false,
+    });
+    await queryInterface.addColumn("Reviews", "year", {
+      type: Sequelize.INTEGER,
+      allowNull: false,
+    });
   },
   async down(queryInterface, Sequelize) {
     options.tableName = "Reviews";
+    await queryInterface.removeColumn("Reviews", "month");
+    await queryInterface.removeColumn("Reviews", "year");
     return queryInterface.dropTable(options);
   },
 };

@@ -1,10 +1,12 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { FaStar } from "react-icons/fa";
 import "./SpotDetail.css";
 
 function SpotDetail() {
   const { spotId } = useParams();
   const [spot, setSpot] = useState(null);
+  const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
     const fetchSpotDetail = async () => {
@@ -13,7 +15,14 @@ function SpotDetail() {
       setSpot(data);
     };
 
+    const fetchReviews = async () => { 
+      const response = await fetch(`/api/spots/${spotId}/reviews`);
+      const data = await response.json();
+      setReviews(data.Reviews);
+    };
+
     fetchSpotDetail();
+    fetchReviews();
   }, [spotId]);
 
   if (!spot) return null;
@@ -34,8 +43,28 @@ function SpotDetail() {
       <p>{spot.description}</p>
       <div>
         <p>Price: ${spot.price} per night</p>
-        <p>{spot.avgStarRating ? `Rating: ${parseFloat(spot.avgStarRating).toFixed(1)}` : 'Rating: New'}</p>
+        <p>{spot.avgStarRating && reviews.length > 0 ? (
+          <> <FaStar /> {parseFloat(spot.avgStarRating).toFixed(1)} · {reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}
+          </> ) : 'New'}
+        </p>
         <button onClick={handleReserveClick}>Reserve</button>
+      </div>
+      <div className="reviews">
+        <h2>{spot.avgStarRating && reviews.length > 0 ? (
+          <> <FaStar /> {parseFloat(spot.avgStarRating).toFixed(1)} · {reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}
+          </> ) : 'New'}
+        </h2>
+        {reviews.length > 0 ? (
+          reviews.map((review) => (
+            <div key={review.id} className="review">
+              <p>By: {review.User.firstName}</p>
+              <p>Reviewed on: {review.month} {review.year}</p>
+              <p>{review.review}</p>
+            </div>
+          ))
+        ) : (
+          <p>Be the first to post a review!</p>
+        )}
       </div>
     </div>
   );

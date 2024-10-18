@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { FaStar } from "react-icons/fa"; 
 
 function Spot({ spot }) {
 
@@ -8,7 +9,9 @@ function Spot({ spot }) {
         <img src={spot.previewImage} alt={spot.name} />
         <p>{spot.city}, {spot.state}</p>
         <p>${spot.price} per night</p>
-        <p>Rating: {spot.avgRating ? parseFloat(spot.avgRating).toFixed(1) : 'New'}</p>
+        <p>{spot.avgRating ? (
+          <> <FaStar /> {parseFloat(spot.avgRating).toFixed(1)}
+          </>) : 'New'}</p>
       </div>
     </Link>
   );

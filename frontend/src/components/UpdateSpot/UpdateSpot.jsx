@@ -53,7 +53,9 @@ function UpdateSpotForm() {
       newErrors.description = "Description must be at least 30 characters";
     if (!formData.name) newErrors.name = "Name is required";
     if (formData.price <= 0) newErrors.price = "Price must be greater than 0";
-    if (!formData.previewImage) newErrors.previewImage = "Preview image is required";
+
+    if (!formData.previewImage) { newErrors.previewImage = "Preview Image URL is required.";
+      } else if (!/\.(jpg|jpeg|png)$/.test(formData.previewImage)) { newErrors.previewImage = "Preview Image URL must end in jpg, jpeg, or png."; }
 
     formData.images.forEach((imageUrl, i) => {
       if (imageUrl && !imageUrl.match(/^https?:\/\/.*\.(jpeg|jpg|png)$/)) {
@@ -66,6 +68,8 @@ function UpdateSpotForm() {
         ...formData,
         lat: 50.1234,  
         lng: 120.4567,
+        price: parseFloat(formData.price),
+        previewImage: formData.previewImage,
       };
 
       const result = await dispatch(updateSpot(spotId, updatedSpotData));

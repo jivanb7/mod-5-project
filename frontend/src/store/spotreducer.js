@@ -8,9 +8,13 @@ export const FETCH_SPOT_FAILURE = 'FETCH_SPOT_FAILURE';
 export const CREATE_SPOT = 'CREATE_SPOT';
 export const CREATE_SPOT_SUCCESS = 'CREATE_SPOT_SUCCESS';
 export const CREATE_SPOT_FAILURE = 'CREATE_SPOT_FAILURE';
+export const UPDATE_SPOT_SUCCESS = 'UPDATE_SPOT_SUCCESS';
 export const DELETE_SPOT = 'DELETE_SPOT';
 export const DELETE_SPOT_SUCCESS = 'DELETE_SPOT_SUCCESS';
 export const DELETE_SPOT_FAILURE = 'DELETE_SPOT_FAILURE';
+export const FETCH_REVIEWS = 'FETCH_REVIEWS';
+export const FETCH_REVIEWS_SUCCESS = 'FETCH_REVIEWS_SUCCESS';
+export const FETCH_REVIEWS_FAILURE = 'FETCH_REVIEWS_FAILURE';
 
 export const fetchSpots = () => async (dispatch) => {
     try {
@@ -49,7 +53,7 @@ export const updateSpot = (spotId, spotData) => async (dispatch) => {
   
       if (response.ok) {
         const data = await response.json();
-        dispatch({ type: 'UPDATE_SPOT_SUCCESS', payload: data });
+        dispatch({ type: UPDATE_SPOT_SUCCESS, payload: data });
         return { ok: true };
       }
     } catch (error) {
@@ -103,10 +107,25 @@ export const deleteSpot = (spotId) => async (dispatch) => {
     }
 };
 
+export const fetchReviews = (spotId) => async (dispatch) => {
+    dispatch({ type: FETCH_REVIEWS });
+  
+    try {
+      const response = await csrfFetch(`/api/spots/${spotId}/reviews`);
+      const data = await response.json();
+  
+      dispatch({ type: FETCH_REVIEWS_SUCCESS, payload: data.Reviews });
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+      dispatch({ type: FETCH_REVIEWS_FAILURE, payload: error });
+    }
+  };
+
 
 const initialState = {
     spots: [],
     selectedSpot: null,
+    reviews: [],
     loading: false,
     error: null,
 };
@@ -127,11 +146,19 @@ const spotReducer = (state = initialState, action) => {
             return { ...state, loading: false, spots: [...state.spots, action.payload] };
         case CREATE_SPOT_FAILURE:
             return { ...state, loading: false, error: action.payload };
+        case UPDATE_SPOT_SUCCESS:
+            return {...state, spots: state.spots.map(spot => spot.id === action.payload.id ? action.payload : spot), selectedSpot: action.payload, }
         case DELETE_SPOT:
             return { ...state, loading: true, error: null };
         case DELETE_SPOT_SUCCESS:
             return {...state, loading: false, spots: state.spots.filter((spot) => spot.id !== action.payload) };
         case DELETE_SPOT_FAILURE:
+            return { ...state, loading: false, error: action.payload };
+        case FETCH_REVIEWS:
+            return { ...state, loading: true, error: null };
+        case FETCH_REVIEWS_SUCCESS:
+            return { ...state, loading: false, reviews: action.payload };
+        case FETCH_REVIEWS_FAILURE:
             return { ...state, loading: false, error: action.payload };
         default:
             return state;
