@@ -21,15 +21,22 @@ function SpotDetail() {
   const previewImage = spot.SpotImages?.find(image => image.preview)?.url;
   const ownerName = spot.Owner ? `${spot.Owner.firstName} ${spot.Owner.lastName}` : 'Unknown Host';
 
+  const handleReserveClick = () => {
+    alert("Feature coming soon");
+  };
+
   return (
     <div className="spot-detail">
       <h1>{spot.name}</h1>
+      <p>Location: {spot.city}, {spot.state}, {spot.country}</p>
       <img src={previewImage} alt={spot.name} />
-      <p>{spot.description}</p>
       <p>Hosted by: {ownerName}</p>
-      <p>Location: {spot.city}, {spot.state}</p>
-      <p>Price: ${spot.price} per night</p>
-      <p>{spot.avgStarRating ? `Rating: ${spot.avgStarRating}` : 'Rating: New'}</p>
+      <p>{spot.description}</p>
+      <div>
+        <p>Price: ${spot.price} per night</p>
+        <p>{spot.avgStarRating ? `Rating: ${parseFloat(spot.avgStarRating).toFixed(1)}` : 'Rating: New'}</p>
+        <button onClick={handleReserveClick}>Reserve</button>
+      </div>
     </div>
   );
 }

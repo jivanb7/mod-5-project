@@ -21,6 +21,7 @@ function ManageSpots() {
   return (
     <div className="manage-spots">
       <h1>Manage Spots</h1>
+      <Link to="/spots/new">Create a New Spot</Link>
       {userSpots.length === 0 ? (
         <div>
           <p>You haven&apos;t posted any spots yet.</p>

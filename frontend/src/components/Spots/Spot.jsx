@@ -8,7 +8,7 @@ function Spot({ spot }) {
         <img src={spot.previewImage} alt={spot.name} />
         <p>{spot.city}, {spot.state}</p>
         <p>${spot.price} per night</p>
-        <p>Rating: {spot.avgRating ? spot.avgRating : 'New'}</p>
+        <p>Rating: {spot.avgRating ? parseFloat(spot.avgRating).toFixed(1) : 'New'}</p>
       </div>
     </Link>
   );
