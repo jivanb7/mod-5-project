@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchSpots } from '../../store/spotreducer';
 import { Link, useNavigate } from 'react-router-dom';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
+import ConfirmDeleteModal from '../../components/DeleteConfirmModal/DeleteConfirmModal';
 
 function ManageSpots() {
   const dispatch = useDispatch();
@@ -35,7 +37,10 @@ function ManageSpots() {
                 <p>${spot.price} per night</p>
               </Link>
               <button onClick={() => handleUpdate(spot.id)}>Update</button>
-              <button>Delete</button>
+              <OpenModalButton
+                buttonText="Delete"
+                modalComponent={<ConfirmDeleteModal spotId={spot.id} />}
+              />
             </li>
           ))}
         </ul>

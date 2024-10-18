@@ -8,6 +8,9 @@ export const FETCH_SPOT_FAILURE = 'FETCH_SPOT_FAILURE';
 export const CREATE_SPOT = 'CREATE_SPOT';
 export const CREATE_SPOT_SUCCESS = 'CREATE_SPOT_SUCCESS';
 export const CREATE_SPOT_FAILURE = 'CREATE_SPOT_FAILURE';
+export const DELETE_SPOT = 'DELETE_SPOT';
+export const DELETE_SPOT_SUCCESS = 'DELETE_SPOT_SUCCESS';
+export const DELETE_SPOT_FAILURE = 'DELETE_SPOT_FAILURE';
 
 export const fetchSpots = () => async (dispatch) => {
     try {
@@ -54,8 +57,6 @@ export const updateSpot = (spotId, spotData) => async (dispatch) => {
       return { ok: false };
     }
   };
-  
-
 
 export const createSpot = (spotData, navigate) => async (dispatch) => {
     dispatch({ type: CREATE_SPOT });
@@ -84,6 +85,25 @@ export const createSpot = (spotData, navigate) => async (dispatch) => {
     }
 };
 
+export const deleteSpot = (spotId) => async (dispatch) => {
+    dispatch({ type: DELETE_SPOT });
+
+    try {
+        const response = await csrfFetch(`/api/spots/${spotId}`, {
+            method: 'DELETE',
+        });
+
+        if (response.ok) {
+            dispatch({ type: DELETE_SPOT_SUCCESS, payload: spotId });
+            dispatch(fetchSpots());
+        }
+    } catch (error) {
+        console.error("Error deleting spot:", error);
+        dispatch({ type: DELETE_SPOT_FAILURE, payload: error });
+    }
+};
+
+
 const initialState = {
     spots: [],
     selectedSpot: null,
@@ -106,6 +126,12 @@ const spotReducer = (state = initialState, action) => {
         case CREATE_SPOT_SUCCESS:
             return { ...state, loading: false, spots: [...state.spots, action.payload] };
         case CREATE_SPOT_FAILURE:
+            return { ...state, loading: false, error: action.payload };
+        case DELETE_SPOT:
+            return { ...state, loading: true, error: null };
+        case DELETE_SPOT_SUCCESS:
+            return {...state, loading: false, spots: state.spots.filter((spot) => spot.id !== action.payload) };
+        case DELETE_SPOT_FAILURE:
             return { ...state, loading: false, error: action.payload };
         default:
             return state;

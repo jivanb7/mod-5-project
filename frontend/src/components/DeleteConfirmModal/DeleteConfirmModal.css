@@ -1,0 +1,18 @@
+.red-button {
+    background-color: red;
+    color: white;
+    border-color: black;
+    border-style: solid;
+    border-width: 3px;
+}
+
+.red-button:hover {
+    background-color: rgb(220, 0, 0);
+}
+
+.dark-grey-button {
+    background-color: darkgrey;
+    color: white;
+    border-color: black;
+    border-width: 3px;
+}
