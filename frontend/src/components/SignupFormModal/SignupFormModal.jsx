@@ -16,38 +16,10 @@ function SignupFormModal() {
   const { closeModal } = useModal();
 
   const handleSubmit = (e) => {
-    // e.preventDefault();
-    // if (password === confirmPassword) {
-    //   setErrors({}); 
-
-    //   return dispatch(
-    //     sessionActions.signup({
-    //       email,
-    //       username,
-    //       firstName,
-    //       lastName,
-    //       password
-    //     })
-    //   )
-    //     .then(closeModal)
-    //     .catch(async (res) => {
-    //       const data = await res.json();
-          
-    //       if (data?.errors) {
-    //         setErrors(data.errors);
-    //       }
-    //     });
-    // } else {
-    //   // Handle password confirmation error
-    //   setErrors({
-    //     confirmPassword: "Confirm Password field must be the same as the Password field"
-    //   });
-    // }
     e.preventDefault();
   
   const newErrors = {};
 
-  // Validate fields and collect errors
   if (!email) newErrors.email = "Email is required";
   if (!username) newErrors.username = "Username is required";
   if (!firstName) newErrors.firstName = "First Name is required";
@@ -57,7 +29,6 @@ function SignupFormModal() {
     newErrors.confirmPassword = "Confirm Password field must be the same as the Password field";
   }
 
-  // If there are errors, set them and return
   if (Object.keys(newErrors).length > 0) {
     return setErrors(newErrors);
   }

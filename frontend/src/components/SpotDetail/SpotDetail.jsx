@@ -1,5 +1,8 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import OpenModalButton from '../OpenModalButton/OpenModalButton';
+import ReviewForm from '../ReviewForm/ReviewForm';
 import { FaStar } from "react-icons/fa";
 import "./SpotDetail.css";
 
@@ -7,6 +10,7 @@ function SpotDetail() {
   const { spotId } = useParams();
   const [spot, setSpot] = useState(null);
   const [reviews, setReviews] = useState([]);
+  const sessionUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     const fetchSpotDetail = async () => {
@@ -34,10 +38,13 @@ function SpotDetail() {
     alert("Feature coming soon");
   };
 
+  const userReviewExists = reviews.some(review => review.userId === sessionUser?.id);
+  const isOwner = sessionUser?.id === spot.ownerId;
+  
   return (
     <div className="spot-detail">
       <h1>{spot.name}</h1>
-      <p>Location: {spot.city}, {spot.state}, {spot.country}</p>
+      <p>{spot.city}, {spot.state}, {spot.country}</p>
       <img src={previewImage} alt={spot.name} />
       <p>Hosted by: {ownerName}</p>
       <p>{spot.description}</p>
@@ -57,13 +64,19 @@ function SpotDetail() {
         {reviews.length > 0 ? (
           reviews.map((review) => (
             <div key={review.id} className="review">
-              <p>By: {review.User.firstName}</p>
-              <p>Reviewed on: {review.month} {review.year}</p>
+              <p>{review.User.firstName}</p>
+              <p>{review.month} {review.year}</p>
               <p>{review.review}</p>
             </div>
           ))
         ) : (
           <p>Be the first to post a review!</p>
+        )}
+        {sessionUser && !isOwner && !userReviewExists && (
+          <OpenModalButton
+            buttonText="Post Your Review"
+            modalComponent={<ReviewForm spotId={spotId} />}
+          />
         )}
       </div>
     </div>

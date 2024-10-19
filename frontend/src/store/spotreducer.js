@@ -15,6 +15,8 @@ export const DELETE_SPOT_FAILURE = 'DELETE_SPOT_FAILURE';
 export const FETCH_REVIEWS = 'FETCH_REVIEWS';
 export const FETCH_REVIEWS_SUCCESS = 'FETCH_REVIEWS_SUCCESS';
 export const FETCH_REVIEWS_FAILURE = 'FETCH_REVIEWS_FAILURE';
+export const POST_REVIEW_SUCCESS = 'POST_REVIEW_SUCCESS';
+export const POST_REVIEW_FAILURE = 'POST_REVIEW_FAILURE';
 
 export const fetchSpots = () => async (dispatch) => {
     try {
@@ -121,6 +123,28 @@ export const fetchReviews = (spotId) => async (dispatch) => {
     }
   };
 
+  export const postReview = (spotId, reviewData) => async (dispatch) => {
+    try {
+        const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(reviewData),
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            dispatch({ type: POST_REVIEW_SUCCESS, payload: data });
+            dispatch(fetchReviews(spotId));
+            return data;
+        }
+    } catch (error) {
+        console.error("Error posting review:", error);
+        dispatch({ type: POST_REVIEW_FAILURE, payload: error });
+        return { error };
+    }
+};
 
 const initialState = {
     spots: [],
@@ -160,6 +184,10 @@ const spotReducer = (state = initialState, action) => {
             return { ...state, loading: false, reviews: action.payload };
         case FETCH_REVIEWS_FAILURE:
             return { ...state, loading: false, error: action.payload };
+        case POST_REVIEW_SUCCESS:
+            return { ...state, reviews: [...state.reviews, action.payload] };
+        case POST_REVIEW_FAILURE:
+            return { ...state, error: action.payload };
         default:
             return state;
     }

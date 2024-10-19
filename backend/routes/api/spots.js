@@ -369,10 +369,16 @@ router.post(
     }
 
     spotId = parseInt(spotId);
+    const currentDate = new Date();
+    const month = currentDate.toLocaleString('default', { month: 'long' });
+    const year = currentDate.getFullYear();
+
     let review = await Review.create({
       ...req.body,
       userId,
       spotId,
+      month,
+      year,
     });
 
     review = review.toJSON();
