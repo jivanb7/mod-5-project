@@ -57,8 +57,6 @@ module.exports = {
   },
   async down(queryInterface, Sequelize) {
     options.tableName = "Reviews";
-    await queryInterface.removeColumn("Reviews", "month");
-    await queryInterface.removeColumn("Reviews", "year");
     return queryInterface.dropTable(options);
   },
 };

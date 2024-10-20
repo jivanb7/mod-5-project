@@ -73,7 +73,7 @@ const reviewsData = [
     review: "The location was perfect for relaxation.",
     stars: 5,
     month: "October",
-    year: 2024,
+    year: 2023,
   },
   {
     userId: 8,
@@ -81,7 +81,7 @@ const reviewsData = [
     review: "It was okay, but overpriced for what it offers.",
     stars: 3,
     month: "November",
-    year: 2024,
+    year: 2023,
   },
   {
     userId: 9,
@@ -89,7 +89,7 @@ const reviewsData = [
     review: "Best spot I've ever stayed at!",
     stars: 5,
     month: "December",
-    year: 2024,
+    year: 2023,
   },
   {
     userId: 10,
@@ -97,7 +97,7 @@ const reviewsData = [
     review: "Quiet and peaceful, great for unwinding.",
     stars: 4,
     month: "January",
-    year: 2024,
+    year: 2023,
   },
   {
     userId: 3,
@@ -169,7 +169,7 @@ const reviewsData = [
     review: "Worst experience ever, will not be coming back here.",
     stars: 1,
     month: "October",
-    year: 2024,
+    year: 2023,
   },
   {
     userId: 10,
@@ -177,7 +177,7 @@ const reviewsData = [
     review: "I enjoyed this experience a ton.",
     stars: 4,
     month: "November",
-    year: 2024,
+    year: 2023,
   },
   {
     userId: 10,
@@ -185,7 +185,7 @@ const reviewsData = [
     review: "It seemed alright, experienced better.",
     stars: 3,
     month: "December",
-    year: 2024,
+    year: 2023,
   }
 ];
 
