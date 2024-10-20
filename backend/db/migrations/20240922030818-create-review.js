@@ -25,6 +25,14 @@ module.exports = {
           type: Sequelize.INTEGER,
           allowNull: false,
         },
+        month: {
+          type: Sequelize.STRING,
+          allowNull: false,
+        },
+        year: {
+          type: Sequelize.INTEGER, 
+          allowNull: false,
+        },
         createdAt: {
           allowNull: false,
           type: Sequelize.DATE,
@@ -38,14 +46,14 @@ module.exports = {
       },
       options
     );
-    await queryInterface.addColumn("Reviews", "month", {
-      type: Sequelize.STRING,
-      allowNull: false,
-    });
-    await queryInterface.addColumn("Reviews", "year", {
-      type: Sequelize.INTEGER,
-      allowNull: false,
-    });
+    // await queryInterface.addColumn("Reviews", "month", {
+    //   type: Sequelize.STRING,
+    //   allowNull: false,
+    // });
+    // await queryInterface.addColumn("Reviews", "year", {
+    //   type: Sequelize.INTEGER,
+    //   allowNull: false,
+    // });
   },
   async down(queryInterface, Sequelize) {
     options.tableName = "Reviews";

@@ -12,8 +12,8 @@ const bookingsData = [
   {
     userId: 2,
     spotId: 5,
-    startDate: "2024-10-19",
-    endDate: "2024-10-25",
+    startDate: "2028-10-19",
+    endDate: "2028-10-25",
   },
   {
     userId: 1,
