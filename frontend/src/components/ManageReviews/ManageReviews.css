@@ -1,0 +1,20 @@
+.manage-reviews {
+    margin: 70px 90px;
+}
+
+.manage-reviews-title, .reviews-date, .reviews-review {
+    text-align: left;
+    margin: 12px 0px;
+}
+
+.reviews-spotname {
+    margin: 12px 0px;
+}
+
+.delete-button {
+    background-color: grey;
+}
+
+.delete-button-reviews {
+    width: 100px;
+}

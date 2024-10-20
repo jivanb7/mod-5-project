@@ -1,3 +1,106 @@
 div.spot-detail {
-    margin-top: 70px;
+    margin-top: 10px;
+}
+
+.spot-detail {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .spot-detail__title {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  .spot-detail__location {
+    margin: 5px 0;
+    text-align: start;
+  }
+  
+  .spot-detail__image {
+    display: block;
+    max-width: 700px;
+    height: 500px;
+  }
+  
+  .spot-detail__info-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .spot-detail__host-info {
+    flex: 1;
+    margin-right: 20px; 
+  }
+  
+  .spot-detail__price-rating-container {
+    display: grid;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid black;
+    border-radius: 10px;
+    padding: 15px;
+    width: 250px;
+    height: 70px;
+  }
+  
+  .spot-detail__price {
+    margin: 0; 
+  }
+  
+  .spot-detail__ratings {
+    display: flex;
+    align-items: center; 
+  }  
+  
+  .spot-detail__host-info p {
+    text-align: left;
+    margin-bottom: 10px;
+  }
+  
+  .spot-detail_price-rating-both {
+    display: flex;
+    justify-content: space-between;
+    width: 250px;
+  }
+  
+ .spot-detail_rating-ptag {
+    margin: 0px
+ }
+
+ .spot-detail__reserve-button {
+  background-color: red;
+  color: white;
+  border: 2px solid black;
+ }
+
+ .reviewer-name, .reviewer-monthyear, .reviewer-description {
+    text-align: left;
+    margin: 12px 0px;
+ }
+
+ .reviewer-name {
+  margin-top: 35px;
+ }
+
+ .reviewer-monthyear {
+    color: grey;
+ }
+
+ .post-review {
+  color: white;
+  background-color: rgb(100, 100, 100);
+ }
+
+.post-review-div {
+  width: 150px;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.delete-button-spot-detail {
+  width: 100px;
 }

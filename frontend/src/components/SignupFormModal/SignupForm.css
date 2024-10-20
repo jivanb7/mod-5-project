@@ -34,7 +34,7 @@ body {
   }
   
   button {
-    width: 100%;
+    /* width: 100%; */
     padding: 10px;
     background-color: white;
     color: black;
@@ -52,3 +52,7 @@ body {
     text-align: center;
   }
   
+.sign-up-button {
+  color: white;
+  background: red;
+}

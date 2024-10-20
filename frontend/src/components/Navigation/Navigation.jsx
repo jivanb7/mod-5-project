@@ -23,7 +23,7 @@ function Navigation({ isLoaded }) {
         {isLoaded && sessionUser ? (
           <>
           <li className="create-spot-button">
-            <button onClick={handleCreateSpot}>Create a New Spot</button>
+            <button className='create-spot-button-button' onClick={handleCreateSpot}>Create a New Spot</button>
           </li>
           <li className="user-menu">
             <UserMenu /> 

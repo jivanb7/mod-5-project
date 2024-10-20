@@ -1,5 +1,3 @@
-// frontend/src/components/LoginFormModal/LoginFormModal.jsx
-
 import { useState, useEffect } from 'react';
 import * as sessionActions from '../../store/session';
 import { useDispatch } from 'react-redux';
@@ -66,6 +64,7 @@ function LoginFormModal() {
           />
         </label>
         <button
+          className='login-button'
           type="submit"
           disabled={credential.length < 4 || password.length < 6}  
         >Log In
@@ -73,13 +72,14 @@ function LoginFormModal() {
       </form>
       
       <button
+        className='login-demo-user'
         type="button"
         onClick={() =>
           dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))
           .then(closeModal)
         }
       >
-        Log in as Demo User
+        Demo User
       </button>
     </>
   );

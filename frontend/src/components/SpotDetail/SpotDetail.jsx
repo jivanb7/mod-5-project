@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import OpenModalButton from '../OpenModalButton/OpenModalButton';
 import ReviewForm from '../ReviewForm/ReviewForm';
+import DeleteConfirmReviewModal from "../DeleteConfirmReviewModal/DeleteConfirmReviewModal";
 import { FaStar } from "react-icons/fa";
 import "./SpotDetail.css";
 
@@ -42,44 +43,64 @@ function SpotDetail() {
   const isOwner = sessionUser?.id === spot.ownerId;
   
   return (
-    <div className="spot-detail">
-      <h1>{spot.name}</h1>
-      <p>{spot.city}, {spot.state}, {spot.country}</p>
-      <img src={previewImage} alt={spot.name} />
-      <p>Hosted by: {ownerName}</p>
-      <p>{spot.description}</p>
-      <div>
-        <p>Price: ${spot.price} per night</p>
-        <p>{spot.avgStarRating && reviews.length > 0 ? (
-          <> <FaStar /> {parseFloat(spot.avgStarRating).toFixed(1)} · {reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}
-          </> ) : 'New'}
-        </p>
-        <button onClick={handleReserveClick}>Reserve</button>
+  <div className="spot-detail">
+    <h1 className="spot-detail__title">{spot.name}</h1>
+    <p className="spot-detail__location">{spot.city}, {spot.state}, {spot.country}</p>
+    <img className="spot-detail__image" src={previewImage} alt={spot.name} />
+    <div className="spot-detail__info-container">
+      <div className="spot-detail__host-info">
+        <p>Hosted by: {ownerName}</p>
+        <p>{spot.description}</p>
       </div>
-      <div className="reviews">
-        <h2>{spot.avgStarRating && reviews.length > 0 ? (
+      <div className="spot-detail__price-rating-container">
+        <div className='spot-detail_price-rating-both'>
+          <p className="spot-detail__price">${spot.price} per night</p>
+          <p className='spot-detail_rating-ptag'>{spot.avgStarRating && reviews.length > 0 ? (
           <> <FaStar /> {parseFloat(spot.avgStarRating).toFixed(1)} · {reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}
           </> ) : 'New'}
-        </h2>
-        {reviews.length > 0 ? (
-          reviews.map((review) => (
-            <div key={review.id} className="review">
-              <p>{review.User.firstName}</p>
-              <p>{review.month} {review.year}</p>
-              <p>{review.review}</p>
-            </div>
-          ))
-        ) : (
-          <p>Be the first to post a review!</p>
-        )}
-        {sessionUser && !isOwner && !userReviewExists && (
-          <OpenModalButton
-            buttonText="Post Your Review"
-            modalComponent={<ReviewForm spotId={spotId} />}
-          />
-        )}
+          </p>
+        </div>
+        <div>
+          <button className="spot-detail__reserve-button" onClick={handleReserveClick}>Reserve</button>
+        </div>
       </div>
     </div>
+
+    <div className="spot-detail__reviews">
+    <h2>{spot.avgStarRating && reviews.length > 0 ? (
+      <> <FaStar /> {parseFloat(spot.avgStarRating).toFixed(1)} · {reviews.length} {reviews.length === 1 ? 'Review' : 'Reviews'}
+      </> ) : 'New'}
+    </h2>
+    {sessionUser && !isOwner && !userReviewExists && (
+      <div className='post-review-div'>
+      <OpenModalButton
+        className="post-review"
+        buttonText="Post Your Review"
+        modalComponent={<ReviewForm spotId={spotId} />}
+      />
+      </div>
+    )}
+    {reviews.length > 0 ? (
+      reviews.map((review) => (
+        <div key={review.id} className="spot-detail__review">
+          <p className='reviewer-name'>{review.User.firstName}</p>
+          <p className='reviewer-monthyear'>{review.month} {review.year}</p>
+          <p className='reviewer-description'>{review.review}</p>
+          <div className="delete-button-spot-detail">
+          {sessionUser?.id === review.userId && (
+            <OpenModalButton 
+              modalComponent={<DeleteConfirmReviewModal reviewId={review.id} />}
+              buttonText="Delete"
+            />
+          )}
+          </div>
+        </div>
+      ))
+    ) : (
+      <p>Be the first to post a review!</p>
+    )}
+    </div>
+  </div>
   );
 }
 

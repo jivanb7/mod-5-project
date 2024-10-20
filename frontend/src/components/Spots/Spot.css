@@ -1,18 +1,40 @@
-.spot-list {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-  }
-  
-  .spot {
-    cursor: pointer;
-    padding: 10px;
-    border: 1px solid #ddd;
-    text-align: center;
-  }
-  
-  .spot img {
-    width: 100%;
-    height: auto;
-  }
-  
+.spot-link {
+  position: relative;
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  border-radius: 8px; 
+  overflow: hidden; 
+  padding: 20px;
+}
+
+.spot-link img {
+  width: 100%; 
+  height: 400px;
+  border-radius: 30px;
+}
+
+.spot-info {
+  display: flex;
+  align-items: flex-start;
+}
+
+.spot-place-price {
+  display: block;
+  flex-direction: column;
+  justify-items: flex-start;
+}
+
+.spot-place-price p {
+  margin: 5px 0px;
+}
+
+.price-spot {
+  text-align: start;
+}
+
+.rating {
+  position: absolute; 
+  right: 10px; 
+  padding: 5px; 
+}

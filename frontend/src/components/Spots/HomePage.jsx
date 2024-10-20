@@ -5,7 +5,6 @@ import Spot from './Spot';
 import "./HomePage.css";
 
 function HomePage() {
-  // const [spots, setSpots] = useState([]);
   const dispatch = useDispatch();
   const spots = useSelector(state => state.spots.spots);
   
@@ -15,12 +14,10 @@ function HomePage() {
 
 
   return (
-    <div className="home-page">
-      <div className="spot-list">
+    <div className="spot-list">
         {spots.map(spot => (
           <Spot key={spot.id} spot={spot} />
         ))}
-      </div>
     </div>
   );
 }

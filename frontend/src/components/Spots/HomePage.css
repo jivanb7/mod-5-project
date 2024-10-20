@@ -1,4 +1,6 @@
 
-div.home-page {
+.spot-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
     margin-top: 70px;
-}
+  }

@@ -1,11 +1,10 @@
-// frontend/src/components/Navigation/ProfileButton.jsx
 
 import { useState, useEffect, useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { FaUserCircle } from 'react-icons/fa';
 import { RxHamburgerMenu } from "react-icons/rx";
 import * as sessionActions from '../../store/session';
-import OpenModalButton from '../OpenModalButton/OpenModalButton';
+import MenuOpenModalButton from '../MenuOpenModalButton/MenuOpenModalButton';
 import LoginFormModal from '../LoginFormModal/LoginFormModal';
 import SignupFormModal from '../SignupFormModal/SignupFormModal';
 import "./ProfileButton.css";
@@ -16,7 +15,7 @@ function ProfileButton({ user }) {
   const ulRef = useRef();
 
   const toggleMenu = (e) => {
-    e.stopPropagation(); // Keep from bubbling up to document and triggering closeMenu
+    e.stopPropagation(); 
     setShowMenu(!showMenu);
   };
 
@@ -66,13 +65,13 @@ function ProfileButton({ user }) {
         ) : (
           <>
           <li>
-              <OpenModalButton
+              <MenuOpenModalButton
                 buttonText="Sign Up"
                 modalComponent={<SignupFormModal />}
               />
             </li>
             <li>
-              <OpenModalButton
+              <MenuOpenModalButton
                 buttonText="Log In"
                 modalComponent={<LoginFormModal />}
               />

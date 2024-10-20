@@ -22,7 +22,6 @@ const ReviewForm = ({ spotId }) => {
         if (validationErrors.length) {
             setErrors(validationErrors);
         } else {
-            console.log("Submitting review data:", { stars, review });
             const reviewData = { stars, review };
             const result = await dispatch(postReview(spotId, reviewData));
 

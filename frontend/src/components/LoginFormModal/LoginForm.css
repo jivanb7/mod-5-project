@@ -53,6 +53,15 @@ body {
     text-align: center;
   }
 
+  .login-button {
+    background-color: red;
+    color: white;
+  }
+
+  .login-demo-user {
+    text-decoration: underline;
+  }
+
   .login-error {
     color: red;
   }

@@ -37,6 +37,11 @@ function UserMenu() {
     navigate('/spots/manage'); 
   };
 
+  const handleManageReviews = () => {
+    setIsOpen(false);
+    navigate('/reviews/current');
+  };
+
   const handleLogout = () => {
     dispatch(sessionActions.logout()).then(() => {
       setIsOpen(false);
@@ -60,6 +65,9 @@ function UserMenu() {
           <li>{sessionUser.email}</li>
           <li>
             <button onClick={handleManageSpots}>Manage Spots</button>
+          </li>
+          <li>
+            <button onClick={handleManageReviews}>Manage Reviews</button>
           </li>
           <li>
             <button onClick={handleLogout}>Log Out</button>

@@ -112,6 +112,8 @@ const formatReview = (reviewObj) => {
     spotId,
     review,
     stars,
+    month,
+    year,
     createdAt,
     updatedAt,
     User,
@@ -130,8 +132,11 @@ const formatReview = (reviewObj) => {
     spotId,
     review,
     stars,
+    month,
+    year,
     createdAt: formattedCreatedAt,
     updatedAt: formattedUpdatedAt,
+    spotName: Spot.name,
   };
 
   if (User) {

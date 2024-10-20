@@ -1,8 +1,7 @@
-// frontend/src/components/OpenModalButton/OpenModalButton.jsx
 
 import { useModal } from '../../context/Modal';
 
-function OpenModalButton({
+function MenuOpenModalButton({
   modalComponent, // component to render inside the modal
   buttonText, // text of the button that opens the modal
   onButtonClick, // optional: callback function that will be called once the button that opens the modal is clicked
@@ -16,7 +15,7 @@ function OpenModalButton({
     if (typeof onButtonClick === "function") onButtonClick();
   };
 
-  return <button className="post-review" onClick={onClick}>{buttonText}</button>;
+  return <button className="menu-open-modal-button" onClick={onClick}>{buttonText}</button>;
 }
 
-export default OpenModalButton;
+export default MenuOpenModalButton;

@@ -17,6 +17,10 @@ export const FETCH_REVIEWS_SUCCESS = 'FETCH_REVIEWS_SUCCESS';
 export const FETCH_REVIEWS_FAILURE = 'FETCH_REVIEWS_FAILURE';
 export const POST_REVIEW_SUCCESS = 'POST_REVIEW_SUCCESS';
 export const POST_REVIEW_FAILURE = 'POST_REVIEW_FAILURE';
+export const FETCH_USER_REVIEWS = 'FETCH_USER_REVIEWS';
+export const FETCH_USER_REVIEWS_SUCCESS = 'FETCH_USER_REVIEWS_SUCCESS';
+export const FETCH_USER_REVIEWS_FAILURE = 'FETCH_USER_REVIEWS_FAILURE';
+export const DELETE_REVIEW = 'reviews/DELETE_REVIEW';
 
 export const fetchSpots = () => async (dispatch) => {
     try {
@@ -123,7 +127,7 @@ export const fetchReviews = (spotId) => async (dispatch) => {
     }
   };
 
-  export const postReview = (spotId, reviewData) => async (dispatch) => {
+export const postReview = (spotId, reviewData) => async (dispatch) => {
     try {
         const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
             method: 'POST',
@@ -143,6 +147,40 @@ export const fetchReviews = (spotId) => async (dispatch) => {
         console.error("Error posting review:", error);
         dispatch({ type: POST_REVIEW_FAILURE, payload: error });
         return { error };
+    }
+};
+
+export const deleteUserReview = (reviewId) => async (dispatch) => {
+    const response = await csrfFetch(`/api/reviews/${reviewId}`, {
+        method: 'DELETE',
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        dispatch({
+            type: DELETE_REVIEW,
+            reviewId,
+        });
+        return data;
+    } else {
+        const error = await response.json();
+        throw new Error(error.message);
+    }
+};
+
+export const fetchUserReviews = () => async (dispatch) => {
+    dispatch({ type: FETCH_USER_REVIEWS });
+
+    try {
+        const response = await csrfFetch('/api/reviews/current');
+        const data = await response.json();
+
+        console.log("DATA : ", data);
+
+        dispatch({ type: FETCH_USER_REVIEWS_SUCCESS, payload: data.Reviews });
+    } catch (error) {
+        console.error("Error fetching user reviews:", error);
+        dispatch({ type: FETCH_USER_REVIEWS_FAILURE, payload: error });
     }
 };
 
@@ -188,6 +226,15 @@ const spotReducer = (state = initialState, action) => {
             return { ...state, reviews: [...state.reviews, action.payload] };
         case POST_REVIEW_FAILURE:
             return { ...state, error: action.payload };
+        case FETCH_USER_REVIEWS:
+            return { ...state, loading: true, error: null };
+        case FETCH_USER_REVIEWS_SUCCESS:
+            return { ...state, loading: false, reviews: action.payload }; 
+        case FETCH_USER_REVIEWS_FAILURE:
+            return { ...state, loading: false, error: action.payload };
+        case DELETE_REVIEW: 
+            // const newReviews = state.reviews.filter(review => review.id !== action.reviewId);  reviews = newReviews,
+            return { ...state, reviews: state.reviews.filter(review => review.id !== action.reviewId),};
         default:
             return state;
     }
