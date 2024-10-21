@@ -37,24 +37,23 @@ const ReviewForm = ({ spotId }) => {
 
     return (
         <form onSubmit={handleSubmit} className="review-form">
-            <h2>How was your stay?</h2>
+            <h2 style={{textAlign: "center"}}>How was your stay?</h2>
             {errors.length > 0 && (
-                <ul className="error-messages">
+                <div className="error-messages">
                     {errors.map((error, idx) => (
-                        <li key={idx}>{error}</li>
+                        <div style={{color: "red"}} key={idx}>{error}</div>
                     ))}
-                </ul>
+                </div>
             )}
             <div>
                 <textarea
                     value={review}
                     onChange={(e) => setReview(e.target.value)}
-                    required
                     placeholder="Leave your review here..."
+                    style={{ width: '350px', height: '150px' }}
                 />
             </div>
-            <div>
-                <label>Star Rating</label>
+            <div style={{display: "flex", justifyContent: "center" }}>
                 <div className="star-rating">
                     {[1, 2, 3, 4, 5].map((star) => (
                         <span
@@ -70,9 +69,10 @@ const ReviewForm = ({ spotId }) => {
                             />
                         </span>
                     ))}
+                    Stars
                 </div>
             </div>
-            <button type="submit">Submit Review</button>
+            <button style={{color: "white", backgroundColor: "red", border: "2px solid black"}} type="submit">Submit Review</button>
         </form>
     );
 };
