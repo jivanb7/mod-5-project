@@ -50,6 +50,7 @@ function LoginFormModal() {
           <input
             type="text"
             value={credential}
+            data-testid='credential-input'
             onChange={(e) => setCredential(e.target.value)}
             required
           />
@@ -59,6 +60,7 @@ function LoginFormModal() {
           <input
             type="password"
             value={password}
+            data-testid='password-input'
             onChange={(e) => setPassword(e.target.value)}
             required
           />
@@ -66,6 +68,7 @@ function LoginFormModal() {
         <button
           className='login-button'
           type="submit"
+          data-testid='login-button'
           disabled={credential.length < 4 || password.length < 6}  
         >Log In
         </button>
@@ -74,6 +77,7 @@ function LoginFormModal() {
       <button
         className='login-demo-user'
         type="button"
+        data-testid='demo-user-login'
         onClick={() =>
           dispatch(sessionActions.login({ credential: 'demo@user.io', password: 'password' }))
           .then(closeModal)

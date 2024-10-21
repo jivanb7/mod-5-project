@@ -1,9 +1,16 @@
 
+.user-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
 .icon-button {
   display: flex;
   align-items: center;
   cursor: pointer;
   color: black;
+  flex-shrink: 0;
 }
 
 .hamburger-icon, .user-icon {

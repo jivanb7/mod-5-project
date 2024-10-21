@@ -66,6 +66,7 @@ function ProfileButton({ user }) {
           <>
           <li>
               <MenuOpenModalButton
+                data-testid='login-modal'
                 buttonText="Sign Up"
                 modalComponent={<SignupFormModal />}
               />

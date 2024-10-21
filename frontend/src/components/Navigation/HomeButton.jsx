@@ -12,7 +12,7 @@ function HomeButton() {
 
   return (
     <button className="logo-button" onClick={handleLogoClick}>
-      <img src={airbnbLogo} alt="Home Logo" className="logo-image" />
+      <img data-testid="logo" src={airbnbLogo} alt="Home Logo" className="logo-image" />
     </button>
   );
 }

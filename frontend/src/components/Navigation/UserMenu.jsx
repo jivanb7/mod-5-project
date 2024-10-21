@@ -51,7 +51,7 @@ function UserMenu() {
 
   return (
     <div className="user-menu">
-      <button onClick={toggleMenu} className="icon-button">
+      <button data-testid='user-menu-button' onClick={toggleMenu} className="icon-button">
         <span className="hamburger-icon">
           <RxHamburgerMenu />
         </span>
@@ -60,7 +60,7 @@ function UserMenu() {
         </span>
       </button>
       {isOpen && sessionUser && (
-        <ul className="profile-dropdown" ref={ulRef}>
+        <ul className="profile-dropdown" data-testid='user-dropdown-menu' ref={ulRef}>
           <li>{`Hello, ${sessionUser.firstName}`}</li>
           <li>{sessionUser.email}</li>
           <li>

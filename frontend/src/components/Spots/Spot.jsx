@@ -5,7 +5,7 @@ import "./Spot.css";
 function Spot({ spot }) {
   return (
     <Link to={`/spots/${spot.id}`} className="spot-link">
-      <img src={spot.previewImage} alt={spot.name} />
+      <img src={spot.previewImage} alt={spot.name} title={spot.name} />
       <div className="spot-info">
         <div className="spot-place-price">
           <p>{spot.city}, {spot.state}</p>

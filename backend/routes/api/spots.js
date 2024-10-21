@@ -170,11 +170,16 @@ router.get("/:spotId", async (req, res, next) => {
   const numReviews = Reviews.length;
   const avgStarRating = getAverageRating(Reviews);
 
+  const previewImage = spot.SpotImages.find(image => image.preview);
+  const nonPreviewImages = spot.SpotImages.filter(image => !image.preview);
+
   const spotToReturn = {
     ...remainingSpotProperties,
     Owner,
     numReviews,
     avgStarRating,
+    previewImage: previewImage ? previewImage.url : null, // return URL or null if not found
+    nonPreviewImages,
   };
 
   formatTimestampsOfRecord(spotToReturn);

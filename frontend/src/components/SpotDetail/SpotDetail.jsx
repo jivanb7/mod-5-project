@@ -46,7 +46,24 @@ function SpotDetail() {
   <div className="spot-detail">
     <h1 className="spot-detail__title">{spot.name}</h1>
     <p className="spot-detail__location">{spot.city}, {spot.state}, {spot.country}</p>
-    <img className="spot-detail__image" src={previewImage} alt={spot.name} />
+    {/* <div className='spot-detail-img-grid'>
+      <div className='spot-detail_previewimage'>
+        <img className="spot-detail__image" src={previewImage} alt={spot.name} />
+      </div>
+      <div className='spot-detail_spotimages'>
+      </div>
+    </div> */}
+    <div className='spot-detail-img-grid'>
+        {previewImage && (
+          <img className="spot-detail__previewimage" src={previewImage} alt={spot.name} />
+        )}
+      <div className='spot-detail_spotimages'>
+        {spot.nonPreviewImages.map(image => (
+          <img key={image.id} className="spot-detail__image" src={image.url} alt={`No Image Provided`} />
+        ))}
+      </div>
+  </div>
+
     <div className="spot-detail__info-container">
       <div className="spot-detail__host-info">
         <p>Hosted by: {ownerName}</p>
@@ -97,13 +114,11 @@ function SpotDetail() {
         </div>
       ))
     ) : (
-      <p>Be the first to post a review!</p>
+      !isOwner && <p>Be the first to post a review!</p>
     )}
     </div>
   </div>
   );
 }
-
-
 
 export default SpotDetail;
