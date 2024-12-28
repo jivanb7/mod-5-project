@@ -24,14 +24,14 @@ const bookingsData = [
   {
     userId: 3,
     spotId: 1,
-    startDate: "2024-12-15",
-    endDate: "2024-12-20",
+    startDate: "2030-12-15",
+    endDate: "2030-12-20",
   },
   {
     userId: 2,
     spotId: 2,
-    startDate: "2025-04-12",
-    endDate: "2025-04-15",
+    startDate: "2031-04-12",
+    endDate: "2031-04-15",
   },
   {
     userId: 4,
@@ -42,14 +42,14 @@ const bookingsData = [
   {
     userId: 5,
     spotId: 6,
-    startDate: "2024-11-01",
-    endDate: "2024-11-10"
+    startDate: "2032-11-01",
+    endDate: "2032-11-10"
   },
   {
     userId: 6,
     spotId: 8,
-    startDate: "2025-01-02",
-    endDate: "2025-01-05"
+    startDate: "2033-01-02",
+    endDate: "2033-01-05"
   },
   {
     userId: 7,
@@ -66,14 +66,14 @@ const bookingsData = [
   {
     userId: 9,
     spotId: 11,
-    startDate: "2024-12-01",
-    endDate: "2024-12-07"
+    startDate: "2034-12-01",
+    endDate: "2034-12-07"
   },
   {
     userId: 10,
     spotId: 12,
-    startDate: "2024-12-21",
-    endDate: "2024-12-23"
+    startDate: "2035-12-21",
+    endDate: "2035-12-23"
   },
   {
     userId: 4,
@@ -84,8 +84,8 @@ const bookingsData = [
   {
     userId: 5,
     spotId: 14,
-    startDate: "2025-03-01",
-    endDate: "2025-03-04"
+    startDate: "2036-03-01",
+    endDate: "2036-03-04"
   },
   {
     userId: 6,
@@ -96,8 +96,8 @@ const bookingsData = [
   {
     userId: 7,
     spotId: 16,
-    startDate: "2025-01-10",
-    endDate: "2025-01-12"
+    startDate: "2037-01-10",
+    endDate: "2037-01-12"
   },
   {
     userId: 8,
@@ -114,14 +114,14 @@ const bookingsData = [
   {
     userId: 10,
     spotId: 19,
-    startDate: "2024-11-15",
-    endDate: "2024-11-20"
+    startDate: "2038-11-15",
+    endDate: "2038-11-20"
   },
   {
     userId: 1,
     spotId: 20,
-    startDate: "2025-01-15",
-    endDate: "2025-01-20"
+    startDate: "2039-01-15",
+    endDate: "2039-01-20"
   },
   {
     userId: 2,
@@ -144,8 +144,8 @@ const bookingsData = [
   {
     userId: 5,
     spotId: 15,
-    startDate: "2024-12-25",
-    endDate: "2024-12-30"
+    startDate: "2040-12-25",
+    endDate: "2040-12-30"
   },
   {
     userId: 6,
